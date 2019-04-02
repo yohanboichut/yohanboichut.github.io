@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://yohanboichut.github.io/posts/testfx-integration-test-post/</loc>
+    <lastmod>2019-04-01T09:12:28+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yohanboichut.github.io/about/</loc>
+  </url>
+  
+  <url>
+    <loc>https://yohanboichut.github.io/contact/</loc>
+  </url>
+  
+  <url>
+    <loc>https://yohanboichut.github.io/posts/</loc>
+    <lastmod>2019-04-01T09:12:28+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://yohanboichut.github.io/series/</loc>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://yohanboichut.github.io/fr/series/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://yohanboichut.github.io/series/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://yohanboichut.github.io/</loc>
+    <lastmod>2019-04-01T09:12:28+02:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://yohanboichut.github.io/fr/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://yohanboichut.github.io/"
+                />
+  </url>
+  
+</urlset>
