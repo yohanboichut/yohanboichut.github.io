@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Teaching *Coding* is raising Awareness of Coding Design</title>
+    <title>Sensibiliation aux concepts de programmation</title>
     <link>https://yohanboichut.github.io/</link>
-    <description>Recent content on Teaching *Coding* is raising Awareness of Coding Design</description>
+    <description>Recent content on Sensibiliation aux concepts de programmation</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
     <lastBuildDate>Mon, 01 Apr 2019 09:12:28 +0200</lastBuildDate>
     
 	<atom:link href="https://yohanboichut.github.io/index.xml" rel="self" type="application/rss+xml" />
@@ -22,12 +21,12 @@ The Service layer (model package) Our service is a very simple service whose goa
     </item>
     
     <item>
-      <title>About</title>
+      <title>A propos</title>
       <link>https://yohanboichut.github.io/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://yohanboichut.github.io/about/</guid>
-      <description>Professor assistant at University of Orleans (France) Teaching  Web services (Rest and SOAP) Design patterns Test and Quality in Softwares Crypto systems and security JEE (JSP/servlets and Struts) JFx  Research fields  System verification Rewriting techniques and their approximations   This space is dedicated to the sharing of exercices, thoughts, experiments I have done with my students since 2008 in different fields of programming listed (but not exhaustively) above.</description>
+      <description>Maître de conférences à l&amp;rsquo;université d&amp;rsquo;Orléans (France) Enseignements  Web services (Rest et SOAP) Design patterns Test et Qualité Sécurité et Cryptographie JEE (JSP/servlets et Struts) JFx  Recherche  Vérification de sytèmes finis ou infinis Systèmes de réécriture, atteignabilité et approximations   Cet espace a pour vocation de partager des problèmes, des solutions avec lesquels je me suis amusé et je m&amp;rsquo;amuse encore depuis 2008 avec mes étudiants.</description>
     </item>
     
     <item>
@@ -36,7 +35,7 @@ The Service layer (model package) Our service is a very simple service whose goa
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://yohanboichut.github.io/contact/</guid>
-      <description> Follow me @YBoichut Contact me at yohan.boichut@gmail.com.  </description>
+      <description> Suivez moi @YBoichut Mon adresse mail : yohan.boichut@gmail.com.  </description>
     </item>
     
   </channel>

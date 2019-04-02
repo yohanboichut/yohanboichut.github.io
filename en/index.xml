@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Raising Awareness of Coding Design</title>
+    <link>https://yohanboichut.github.io/en/</link>
+    <description>Recent content on Raising Awareness of Coding Design</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 01 Apr 2019 09:12:28 +0200</lastBuildDate>
+    
+	<atom:link href="https://yohanboichut.github.io/en/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GUI Testing without Service Implementations</title>
+      <link>https://yohanboichut.github.io/en/posts/testfx-integration-test-post/</link>
+      <pubDate>Mon, 01 Apr 2019 09:12:28 +0200</pubDate>
+      
+      <guid>https://yohanboichut.github.io/en/posts/testfx-integration-test-post/</guid>
+      <description>This project illustrates a way to perform integration testing on GUI applications. The service layer is mocked using Easymock. Thus, we define use-cases in TestFx by mocking the service layer. Our test suite is organized in such a way that our future service implementation will inherit of the planned test defined initially with mocks. The whole source code can be found in Github.
+The Service layer (model package) Our service is a very simple service whose goal is to handle a set of users (add a user, delete a user and get all users).</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://yohanboichut.github.io/en/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yohanboichut.github.io/en/about/</guid>
+      <description>Professor assistant at University of Orleans (France) Teaching  Web services (Rest and SOAP) Design patterns Test and Quality in Softwares Crypto systems and security JEE (JSP/servlets and Struts) JFx  Research fields  System verification Rewriting techniques and their approximations   This space is dedicated to the sharing of exercices, thoughts, experiments I have done with my students since 2008 in different fields of programming listed (but not exhaustively) above.</description>
+    </item>
+    
+    <item>
+      <title>Contact</title>
+      <link>https://yohanboichut.github.io/en/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yohanboichut.github.io/en/contact/</guid>
+      <description> Follow me @YBoichut Contact me at yohan.boichut@gmail.com.  </description>
+    </item>
+    
+  </channel>
+</rss>
