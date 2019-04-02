@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Yohan Boichut">
+    <meta name="description" content="Yohan Boichut, Java &amp; Coding Design">
+    <meta name="keywords" content="teacher, developer, java">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="GUI Testing without Service Implementations"/>
+<meta name="twitter:description" content="This project illustrates a way to perform integration testing on GUI applications. The service layer is mocked using Easymock. Thus, we define use-cases in TestFx by mocking the service layer. Our test suite is organized in such a way that our future service implementation will inherit of the planned test defined initially with mocks. The whole source code can be found in Github.
+The Service layer (model package) Our service is a very simple service whose goal is to handle a set of users (add a user, delete a user and get all users)."/>
+
+    <meta property="og:title" content="GUI Testing without Service Implementations" />
+<meta property="og:description" content="This project illustrates a way to perform integration testing on GUI applications. The service layer is mocked using Easymock. Thus, we define use-cases in TestFx by mocking the service layer. Our test suite is organized in such a way that our future service implementation will inherit of the planned test defined initially with mocks. The whole source code can be found in Github.
+The Service layer (model package) Our service is a very simple service whose goal is to handle a set of users (add a user, delete a user and get all users)." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yohanboichut.github.io/posts/testfx-integration-test-post/" />
+<meta property="article:published_time" content="2019-04-01T09:12:28&#43;02:00"/>
+<meta property="article:modified_time" content="2019-04-01T09:12:28&#43;02:00"/>
+
+
+    
+      <base href="https://yohanboichut.github.io/posts/testfx-integration-test-post/">
+    
+    <title>
+  GUI Testing without Service Implementations · Teaching *Coding* is raising Awareness of Coding Design
+</title>
+
+    
+      <link rel="canonical" href="https://yohanboichut.github.io/posts/testfx-integration-test-post/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" integrity="sha256-oSrCnRYXvHG31SBifqP2PM1uje7SJUyX0nTwO2RJV54=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://yohanboichut.github.io/css/coder.min.28d751104f30c16da1aa1bb04015cbe662cacfe0d1b01af4f2240ad58580069c.css" integrity="sha256-KNdREE8wwW2hqhuwQBXL5mLKz&#43;DRsBr08iQK1YWABpw=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://yohanboichut.github.io/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://yohanboichut.github.io/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.54.0" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://yohanboichut.github.io/">
+      Teaching *Coding* is raising Awareness of Coding Design
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://yohanboichut.github.io/about/">About</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://yohanboichut.github.io/posts/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://yohanboichut.github.io/contact/">Contact me</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">GUI Testing without Service Implementations</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2019-04-01T09:12:28&#43;02:00'>
+                April 4st, 1049
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              3 minutes read
+            </span>
+          </div>
+          
+          
+        </div>
+      </header>
+
+      <div>
+        
+
+<p>This project illustrates a way to perform <strong>integration testing</strong> on <strong>GUI applications</strong>.
+The service layer is mocked using <strong>Easymock</strong>. Thus, we define <strong>use-cases</strong> in <strong>TestFx</strong> by mocking the service layer.
+Our <strong>test suite</strong> is organized in such a way that our <strong>future service implementation</strong> will
+inherit of the planned test defined initially with mocks.
+The whole source code can be found in <a href="https://github.com/yohanboichut/jfxintegrationtesting">Github</a>.</p>
+
+<h2 id="the-service-layer-model-package">The Service layer (<em>model package</em>)</h2>
+
+<p>Our service is a very simple service whose goal is to handle a set of users (add a user, delete a user and get all users). It is composed of the main interface <strong>UserService</strong>
+and an abstract class <strong>User</strong>. We add also a factory <strong>ServiceFactory</strong>.
+A user has a last name and a first name.</p>
+
+<h2 id="the-jfx-views-views-package">The JFx views (<em>views package</em>)</h2>
+
+<p>This application is really minimalist. The menu is composed of two buttons (<em>views.Menu</em>): <em>Delete a user</em> and <em>quit</em>.
+Clicking on <em>Delete a user</em> leads you toward a lovely pane (<em>views.UserList</em>) composed of a listview (<em>ListView</em>) and two buttons
+(<em>delete a user</em> and <em>menu</em>).</p>
+
+<h2 id="the-controller-controller-package">The Controller (<em>controller package</em>)</h2>
+
+<p>Basically, like in any MVC application, the controller has its orchestral role.</p>
+
+<h2 id="what-are-these-story-lines">What are these Story-lines?</h2>
+
+<p>In the class <em>MainTest</em>, one can denote two basic story-lines in two <strong>@Test</strong> functions:</p>
+
+<ul>
+<li><p>A user runs the application, click on <em>delete a user</em>,
+select a user in the listview, click on the delete button and finally cancel his action. The class
+<em>StoryLineSelectAUserAndCancel</em> explicitly defines what we expect about an instance of the class UserService in this
+story-line.</p></li>
+
+<li><p>A user runs the application, click on <em>delete a user</em>, select a user in the listview, click on the delete button and finally confirm his action. The class <em>StoryLineSelectAUserAndConfirmMock</em> explicitly defines what we expect about an instance of the class UserService in this story-line.</p></li>
+</ul>
+
+<p>In the package <em>storylines.mocks</em>, both story-line classes express in their method <em>execute()</em> what we expect about a mock of the class UserService in this story-line. For instance,
+it corresponds to an initialization of the used mock (see right below, the class StoryLineSelectAUserAndConfirmMock).
+<img src="https://yohanboichut.github.io/images/storyline.png" alt="A story-line" /></p>
+
+<p>Each story-line is associated to a <strong>@Test</strong> method by a factory (see in the test environment: storylines.mocks.StorylineFactoryMocks). The String constants are defined in the abstract class: <strong>MainTest</strong>.</p>
+
+<h2 id="discussion-about-the-abstract-class-maintest">Discussion about the abstract class MainTest</h2>
+
+<p><img src="https://yohanboichut.github.io/images/classdiagramm.png" alt="Diagram of Test classes" /></p>
+
+<p>Let us focus on the class <strong>MainTest</strong>. The whole test suite is defined under the hypothesis that
+a story-line factory and a user service factory are sufficient. And that is the case.</p>
+
+<p><img src="https://yohanboichut.github.io/images/MainTest0.png" alt="MainTest - Constructor" /></p>
+
+<p>The test case <em>click and cancel</em> is defined using the TestFx library in order to simulate a human interaction.</p>
+
+<p><img src="https://yohanboichut.github.io/images/MainTest1.png" alt="MainTest - Story-line 1" /></p>
+
+<p>The test case <em>click and confirm</em> is defined as well.</p>
+
+<p><img src="https://yohanboichut.github.io/images/MainTest2.png" alt="MainTest - Story-line 2" /></p>
+
+<p>Finally, you can find some extra functions in particular for timing the animation.</p>
+
+<p><img src="https://yohanboichut.github.io/images/MainTest3.png" alt="MainTest - Extra functions" /></p>
+
+<p>The interesting point is that one can define the functional tests without any implementation of the service layer. And thus, those functional tests can be considered as integration tests for the next implementations of the services. This exercise is in the scope of decoupling the functional tests of their implementations when they are encoded as unit tests.</p>
+
+      </div>
+
+      <footer>
+        
+
+
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+      <p>mail: yohan.boichut@gmail.com</p>
+    
+     © 2019
+    
+       · 
+      Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

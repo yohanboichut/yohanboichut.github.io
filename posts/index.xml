@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Teaching *Coding* is raising Awareness of Coding Design</title>
+    <link>https://yohanboichut.github.io/posts/</link>
+    <description>Recent content in Posts on Teaching *Coding* is raising Awareness of Coding Design</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 01 Apr 2019 09:12:28 +0200</lastBuildDate>
+    
+	<atom:link href="https://yohanboichut.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GUI Testing without Service Implementations</title>
+      <link>https://yohanboichut.github.io/posts/testfx-integration-test-post/</link>
+      <pubDate>Mon, 01 Apr 2019 09:12:28 +0200</pubDate>
+      
+      <guid>https://yohanboichut.github.io/posts/testfx-integration-test-post/</guid>
+      <description>This project illustrates a way to perform integration testing on GUI applications. The service layer is mocked using Easymock. Thus, we define use-cases in TestFx by mocking the service layer. Our test suite is organized in such a way that our future service implementation will inherit of the planned test defined initially with mocks. The whole source code can be found in Github.
+The Service layer (model package) Our service is a very simple service whose goal is to handle a set of users (add a user, delete a user and get all users).</description>
+    </item>
+    
+  </channel>
+</rss>
