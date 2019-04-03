@@ -10,13 +10,13 @@
     <meta name="keywords" content="Enseignant, Java, Développeur">
 
     <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="GUI Testing without Service Implementations"/>
-<meta name="twitter:description" content="This project illustrates a way to perform integration testing on GUI applications. The service layer is mocked using Easymock. Thus, we define use-cases in TestFx by mocking the service layer. Our test suite is organized in such a way that our future service implementation will inherit of the planned test defined initially with mocks. The whole source code can be found in Github.
-The Service layer (model package) Our service is a very simple service whose goal is to handle a set of users (add a user, delete a user and get all users)."/>
+<meta name="twitter:title" content="Test d&#39;intégration pour des applications JFx"/>
+<meta name="twitter:description" content="Dans ce post, on s&rsquo;intéresse à une façon d&rsquo;organiser des tests fonctionnels qui peut être considérer ensuite comme des tests d&rsquo;intégration. Effectivement, nous considérons une application JFx pour laquelle nous sommes amputés de la couche de service. Nous n&rsquo;avons que l&rsquo;API de cette couche. Évidemment, depuis l&rsquo;avènement des mocks, à partir d&rsquo;APIs, nous pouvons simuler ce que l&rsquo;on veut presque comme l&rsquo;on veut.
+Nous définissons ici deux use-cases dans les méthodes de tests dans la classe MainTest."/>
 
-    <meta property="og:title" content="GUI Testing without Service Implementations" />
-<meta property="og:description" content="This project illustrates a way to perform integration testing on GUI applications. The service layer is mocked using Easymock. Thus, we define use-cases in TestFx by mocking the service layer. Our test suite is organized in such a way that our future service implementation will inherit of the planned test defined initially with mocks. The whole source code can be found in Github.
-The Service layer (model package) Our service is a very simple service whose goal is to handle a set of users (add a user, delete a user and get all users)." />
+    <meta property="og:title" content="Test d&#39;intégration pour des applications JFx" />
+<meta property="og:description" content="Dans ce post, on s&rsquo;intéresse à une façon d&rsquo;organiser des tests fonctionnels qui peut être considérer ensuite comme des tests d&rsquo;intégration. Effectivement, nous considérons une application JFx pour laquelle nous sommes amputés de la couche de service. Nous n&rsquo;avons que l&rsquo;API de cette couche. Évidemment, depuis l&rsquo;avènement des mocks, à partir d&rsquo;APIs, nous pouvons simuler ce que l&rsquo;on veut presque comme l&rsquo;on veut.
+Nous définissons ici deux use-cases dans les méthodes de tests dans la classe MainTest." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://yohanboichut.github.io/posts/testfx-integration-test-post/" />
 <meta property="article:published_time" content="2019-04-01T09:12:28&#43;02:00"/>
@@ -27,7 +27,7 @@ The Service layer (model package) Our service is a very simple service whose goa
       <base href="https://yohanboichut.github.io/posts/testfx-integration-test-post/">
     
     <title>
-  GUI Testing without Service Implementations · Sensibiliation aux concepts de programmation
+  Test d&#39;intégration pour des applications JFx · Sensibiliation aux concepts de programmation
 </title>
 
     
@@ -111,7 +111,7 @@ The Service layer (model package) Our service is a very simple service whose goa
     <article>
       <header>
         <div class="post-title">
-          <h1 class="title">GUI Testing without Service Implementations</h1>
+          <h1 class="title">Test d&#39;intégration pour des applications JFx</h1>
         </div>
         <div class="post-meta">
           <div class="date">
@@ -134,69 +134,75 @@ The Service layer (model package) Our service is a very simple service whose goa
       <div>
         
 
-<p>This project illustrates a way to perform <strong>integration testing</strong> on <strong>GUI applications</strong>.
-The service layer is mocked using <strong>Easymock</strong>. Thus, we define <strong>use-cases</strong> in <strong>TestFx</strong> by mocking the service layer.
-Our <strong>test suite</strong> is organized in such a way that our <strong>future service implementation</strong> will
-inherit of the planned test defined initially with mocks.
-The whole source code can be found in <a href="https://github.com/yohanboichut/jfxintegrationtesting">Github</a>.</p>
+<p>Dans ce post, on s&rsquo;intéresse à une façon d&rsquo;organiser des tests fonctionnels qui peut être considérer ensuite comme des tests d&rsquo;intégration.
+Effectivement, nous considérons une application JFx pour laquelle nous sommes amputés de la couche de service. Nous n&rsquo;avons que l&rsquo;API de cette couche.
+Évidemment, depuis l&rsquo;avènement des mocks, à partir d&rsquo;APIs, nous pouvons simuler ce que l&rsquo;on veut presque comme l&rsquo;on veut.</p>
 
-<h2 id="the-service-layer-model-package">The Service layer (<em>model package</em>)</h2>
+<p>Nous définissons ici deux <em>use-cases</em> dans les méthodes de tests dans la classe <strong>MainTest</strong>. Notre structure de tests est organisée
+de telle façon que les <em>uses-cases</em> pourront être réutilisés pour toutes les futures implémentations de notre couche de services sachant que pour le moment
+nous avons des tests fonctionnels qui s&rsquo;exécutent grâce à notre couche de service <em>mockée</em>.</p>
 
-<p>Our service is a very simple service whose goal is to handle a set of users (add a user, delete a user and get all users). It is composed of the main interface <strong>UserService</strong>
-and an abstract class <strong>User</strong>. We add also a factory <strong>ServiceFactory</strong>.
-A user has a last name and a first name.</p>
+<p>Le source de l&rsquo;application présentée ici est disponible sur <a href="https://github.com/yohanboichut/jfxintegrationtesting">Github</a>.</p>
 
-<h2 id="the-jfx-views-views-package">The JFx views (<em>views package</em>)</h2>
+<h2 id="la-couche-de-service-package-model">La couche de service (<em>package model</em>)</h2>
 
-<p>This application is really minimalist. The menu is composed of two buttons (<em>views.Menu</em>): <em>Delete a user</em> and <em>quit</em>.
-Clicking on <em>Delete a user</em> leads you toward a lovely pane (<em>views.UserList</em>) composed of a listview (<em>ListView</em>) and two buttons
-(<em>delete a user</em> and <em>menu</em>).</p>
+<p>En deux mots, notre API service nous permet de gérer un ensemble d&rsquo;utilisateur (ajouter, supprimer et récupérer tous les utilisateurs).
+On retrouve une interface <strong>UserService</strong> et une classe abstraite <strong>User</strong> permettant de définir ce qu&rsquo;on attend d&rsquo;un utilisateur. Nous ajoutons également une
+fabrique <strong>ServiceFactory</strong>.</p>
 
-<h2 id="the-controller-controller-package">The Controller (<em>controller package</em>)</h2>
+<h2 id="les-vues-jfx-package-views">Les vues JFx (<em>package views</em>)</h2>
 
-<p>Basically, like in any MVC application, the controller has its orchestral role.</p>
+<p>Cette application est minimaliste. Nous arrivons d&rsquo;abord sur un menu avec deux boutons (<em>views.Menu</em>): le premier nous permet de nous rediriger vers un écran (<em>views.UserList</em>) qui nous permettra de supprimer un utilisateur,
+le second permet de quitter l&rsquo;application. L&rsquo;écran de suppression est composé d&rsquo;une <em>listview</em> et de deux boutons: un pour demander
+la suppression de l&rsquo;utilisateur sélectionné dans la <em>listview</em> et l&rsquo;autre permettant de revenir au menu principal.</p>
 
-<h2 id="what-are-these-story-lines">What are these Story-lines?</h2>
+<h2 id="le-contrôleur-package-controller">Le contrôleur (<em>package controller</em>)</h2>
 
-<p>In the class <em>MainTest</em>, one can denote two basic story-lines in two <strong>@Test</strong> functions:</p>
+<p>Rien d&rsquo;extraordinaire ici, le contrôleur joue son rôle de chef d&rsquo;orchestre.</p>
+
+<h2 id="que-sont-ces-story-lines-scénarios">Que sont ces <em>Story-lines</em> (Scénarios)?</h2>
+
+<p>Dans la classe <em>MainTest</em>, nous trouvons deux scénarios classiques dans deux méthodes <strong>@Test</strong> :</p>
 
 <ul>
-<li><p>A user runs the application, click on <em>delete a user</em>,
-select a user in the listview, click on the delete button and finally cancel his action. The class
-<em>StoryLineSelectAUserAndCancel</em> explicitly defines what we expect about an instance of the class UserService in this
-story-line.</p></li>
+<li><p>Un utilisateur lance l&rsquo;application, clique sur le bouton <em>delete a user</em>, sélectionne un utilisateur dans la listview, clique sur le bouton <em>delete</em> puis finalement décide d&rsquo;annuler son opération.
+La classe <em>StoryLineSelectAUserAndCancelMock</em> définit explicitement ce que nous attendons comme interaction sur une instances
+de la classe <em>UserService</em>. C&rsquo;est ce qu&rsquo;il se passe en particulier quand on utilise des mocks. Dans le cas de l&rsquo;utilisation d&rsquo;une implémentation concrète de notre service utilisateurs, nous
+utilisons la classe <em>StoryLineSelectAUserAndCancelImpl</em> comme une classe qui initialise le service d&rsquo;utilisateurs avec des données intéressantes pour le jeu de test concerné.</p></li>
 
-<li><p>A user runs the application, click on <em>delete a user</em>, select a user in the listview, click on the delete button and finally confirm his action. The class <em>StoryLineSelectAUserAndConfirmMock</em> explicitly defines what we expect about an instance of the class UserService in this story-line.</p></li>
+<li><p>Un utilisateur lance l&rsquo;application, clique sur le bouton <em>delete a user</em>, sélectionne un utilisateur dans la listview, clique sur le bouton <em>delete</em> et finalement confirme son choix. La classe <em>StoryLineSelectAUserAndConfirmMock</em> définit explicitement ce que nous attendons comme interactions avec une instance du type <em>UserService</em> (en particulier un mock de ce type). Dans le cas de l&rsquo;utilisation d&rsquo;une implémentation concrète de notre service utilisateurs, nous
+utilisons la classe <em>StoryLineSelectAUserAndConfirmImpl</em> comme une classe qui initialise le service d&rsquo;utilisateurs avec des données intéressantes pour le jeu de test concerné.</p></li>
 </ul>
 
-<p>In the package <em>storylines.mocks</em>, both story-line classes express in their method <em>execute()</em> what we expect about a mock of the class UserService in this story-line. For instance,
-it corresponds to an initialization of the used mock (see right below, the class StoryLineSelectAUserAndConfirmMock).
-<img src="https://yohanboichut.github.io/images/storyline.png" alt="A story-line" /></p>
+<p>Dans le package <em>storylines.mocks</em>, les deux classes implémentant l&rsquo;interface <em>StoryLine</em> contiennent dans leur méthode <em>exécute()</em> les interactions attendues avec le mock de notre couche de service.
+Vous retrouverez ci-dessous la classe StoryLineSelectAUserAndConfirmMock détaillant ce qu&rsquo;on attend d&rsquo;un mock de type <em>UserService</em> pour ce scénario.
+<img src="https://yohanboichut.github.io/images/storyline.png" alt="Un scénario" /></p>
 
-<p>Each story-line is associated to a <strong>@Test</strong> method by a factory (see in the test environment: storylines.mocks.StorylineFactoryMocks). The String constants are defined in the abstract class: <strong>MainTest</strong>.</p>
+<p>Chaque scénario sera associé à une méthode <strong>@Test</strong> par une fabrique de scénarios (voir dans le dossier test : <em>storylines.mocks.StorylineFactoryMocks</em>). Les constantes que nous voyons apparaître
+dans cette fabrique sont définies dans la classe <strong>MainTest</strong> et correspondent chacune à un nom de méthode de test.</p>
 
-<h2 id="discussion-about-the-abstract-class-maintest">Discussion about the abstract class MainTest</h2>
+<h2 id="discussion-sur-la-classe-abstraite-maintest">Discussion sur la classe abstraite MainTest</h2>
 
-<p><img src="https://yohanboichut.github.io/images/classdiagramm.png" alt="Diagram of Test classes" /></p>
+<p><img src="https://yohanboichut.github.io/images/classdiagramm.png" alt="Diagramme de classes - Test" /></p>
 
-<p>Let us focus on the class <strong>MainTest</strong>. The whole test suite is defined under the hypothesis that
-a story-line factory and a user service factory are sufficient. And that is the case.</p>
+<p>Arrêtons nous un instant sur la classe <strong>MainTest</strong>. Les jeux de tests de cette classe sont conçus sous l&rsquo;hypothèse qu&rsquo;il suffit d&rsquo;avoir une fabrique de scénarios et une fabrique de service pour être opérationnels. Ce qui est effectivement le cas si vous regardez attentivement les deux classes étendant la classe <strong>MainTest</strong> : <strong>MainTestMock</strong> et <strong>MainTestImpl</strong>.</p>
 
-<p><img src="https://yohanboichut.github.io/images/MainTest0.png" alt="MainTest - Constructor" /></p>
+<p><img src="https://yohanboichut.github.io/images/MainTest0.png" alt="MainTest - Constructeur" /></p>
 
-<p>The test case <em>click and cancel</em> is defined using the TestFx library in order to simulate a human interaction.</p>
+<p>Le cas de test <em>click and cancel</em> est défini en utilisant la librairie TestFx dans le but de simuler une interaction humaine via un robot.</p>
 
-<p><img src="https://yohanboichut.github.io/images/MainTest1.png" alt="MainTest - Story-line 1" /></p>
+<p><img src="https://yohanboichut.github.io/images/MainTest1.png" alt="MainTest - Scénario 1" /></p>
 
-<p>The test case <em>click and confirm</em> is defined as well.</p>
+<p>Le cas de test <em>click and confirm</em> est défini de la même façon.</p>
 
-<p><img src="https://yohanboichut.github.io/images/MainTest2.png" alt="MainTest - Story-line 2" /></p>
+<p><img src="https://yohanboichut.github.io/images/MainTest2.png" alt="MainTest - Scénario 2" /></p>
 
-<p>Finally, you can find some extra functions in particular for timing the animation.</p>
+<p>Finalement, nous trouvons quelques fonctions supplémentaires pour gérer le timing des animations.</p>
 
-<p><img src="https://yohanboichut.github.io/images/MainTest3.png" alt="MainTest - Extra functions" /></p>
+<p><img src="https://yohanboichut.github.io/images/MainTest3.png" alt="MainTest - fonctions supplémentaires" /></p>
 
-<p>The interesting point is that one can define the functional tests without any implementation of the service layer. And thus, those functional tests can be considered as integration tests for the next implementations of the services. This exercise is in the scope of decoupling the functional tests of their implementations when they are encoded as unit tests.</p>
+<p>Le point intéressant ici est que nous parvenons à définir et à exécuter des tests fonctionnels sans implémentation de la couche de service (via des mocks). Ces tests peuvent ensuite être considérés comme des tests d’intégration puisqu&rsquo;en ayant une fabrique de scénarios et une fabrique de service pour une nouvelle implémentation, on peut alors créer une nouvelle classe de test en héritant directement de la classe <em>MainTest</em>. Les résultats doivent être conformes à ceux initialement prévus avec nos mocks.
+Cet exercice que j&rsquo;ai proposé à mes étudiants de Master s&rsquo;inscrit dans le cadre du découplage des tests fonctionnels et des implémentations quand les tests fonctionnels sont écrits sous forme de tests unitaires et qu&rsquo;on vise à valider des implémentations d&rsquo;une interface données.</p>
 
       </div>
 
