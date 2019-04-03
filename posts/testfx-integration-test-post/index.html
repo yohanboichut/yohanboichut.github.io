@@ -166,8 +166,7 @@ la suppression de l&rsquo;utilisateur sélectionné dans la <em>listview</em> et
 
 <ul>
 <li><p>Un utilisateur lance l&rsquo;application, clique sur le bouton <em>delete a user</em>, sélectionne un utilisateur dans la listview, clique sur le bouton <em>delete</em> puis finalement décide d&rsquo;annuler son opération.
-La classe <em>StoryLineSelectAUserAndCancelMock</em> définit explicitement ce que nous attendons comme interaction sur une instances
-de la classe <em>UserService</em>. C&rsquo;est ce qu&rsquo;il se passe en particulier quand on utilise des mocks. Dans le cas de l&rsquo;utilisation d&rsquo;une implémentation concrète de notre service utilisateurs, nous
+La classe <em>StoryLineSelectAUserAndCancelMock</em> définit explicitement ce que nous attendons comme interactions avec un mock de type <em>UserService</em>. Dans le cas de l&rsquo;utilisation d&rsquo;une implémentation concrète de notre service utilisateurs, nous
 utilisons la classe <em>StoryLineSelectAUserAndCancelImpl</em> comme une classe qui initialise le service d&rsquo;utilisateurs avec des données intéressantes pour le jeu de test concerné.</p></li>
 
 <li><p>Un utilisateur lance l&rsquo;application, clique sur le bouton <em>delete a user</em>, sélectionne un utilisateur dans la listview, clique sur le bouton <em>delete</em> et finalement confirme son choix. La classe <em>StoryLineSelectAUserAndConfirmMock</em> définit explicitement ce que nous attendons comme interactions avec une instance du type <em>UserService</em> (en particulier un mock de ce type). Dans le cas de l&rsquo;utilisation d&rsquo;une implémentation concrète de notre service utilisateurs, nous
@@ -175,7 +174,7 @@ utilisons la classe <em>StoryLineSelectAUserAndConfirmImpl</em> comme une classe
 </ul>
 
 <p>Dans le package <em>storylines.mocks</em>, les deux classes implémentant l&rsquo;interface <em>StoryLine</em> contiennent dans leur méthode <em>exécute()</em> les interactions attendues avec le mock de notre couche de service.
-Vous retrouverez ci-dessous la classe StoryLineSelectAUserAndConfirmMock détaillant ce qu&rsquo;on attend d&rsquo;un mock de type <em>UserService</em> pour ce scénario.
+Vous retrouverez ci-dessous la classe <em>StoryLineSelectAUserAndConfirmMock</em> détaillant ce qu&rsquo;on attend d&rsquo;un mock de type <em>UserService</em> pour ce scénario.
 <img src="https://yohanboichut.github.io/images/storyline.png" alt="Un scénario" /></p>
 
 <p>Chaque scénario sera associé à une méthode <strong>@Test</strong> par une fabrique de scénarios (voir dans le dossier test : <em>storylines.mocks.StorylineFactoryMocks</em>). Les constantes que nous voyons apparaître
@@ -185,7 +184,7 @@ dans cette fabrique sont définies dans la classe <strong>MainTest</strong> et c
 
 <p><img src="https://yohanboichut.github.io/images/classdiagramm.png" alt="Diagramme de classes - Test" /></p>
 
-<p>Arrêtons nous un instant sur la classe <strong>MainTest</strong>. Les jeux de tests de cette classe sont conçus sous l&rsquo;hypothèse qu&rsquo;il suffit d&rsquo;avoir une fabrique de scénarios et une fabrique de service pour être opérationnels. Ce qui est effectivement le cas si vous regardez attentivement les deux classes étendant la classe <strong>MainTest</strong> : <strong>MainTestMock</strong> et <strong>MainTestImpl</strong>.</p>
+<p>Arrêtons nous un instant sur la classe <strong>MainTest</strong>. Les jeux de tests de cette classe sont conçus sous l&rsquo;hypothèse qu&rsquo;il suffit d&rsquo;avoir une fabrique de scénarios et une fabrique de services pour être opérationnels. Ce qui est effectivement le cas si vous regardez attentivement les deux classes étendant la classe <strong>MainTest</strong> : <strong>MainTestMock</strong> et <strong>MainTestImpl</strong>.</p>
 
 <p><img src="https://yohanboichut.github.io/images/MainTest0.png" alt="MainTest - Constructeur" /></p>
 
@@ -201,8 +200,8 @@ dans cette fabrique sont définies dans la classe <strong>MainTest</strong> et c
 
 <p><img src="https://yohanboichut.github.io/images/MainTest3.png" alt="MainTest - fonctions supplémentaires" /></p>
 
-<p>Le point intéressant ici est que nous parvenons à définir et à exécuter des tests fonctionnels sans implémentation de la couche de service (via des mocks). Ces tests peuvent ensuite être considérés comme des tests d’intégration puisqu&rsquo;en ayant une fabrique de scénarios et une fabrique de service pour une nouvelle implémentation, on peut alors créer une nouvelle classe de test en héritant directement de la classe <em>MainTest</em>. Les résultats doivent être conformes à ceux initialement prévus avec nos mocks.
-Cet exercice que j&rsquo;ai proposé à mes étudiants de Master s&rsquo;inscrit dans le cadre du découplage des tests fonctionnels et des implémentations quand les tests fonctionnels sont écrits sous forme de tests unitaires et qu&rsquo;on vise à valider des implémentations d&rsquo;une interface données.</p>
+<p>Le point intéressant ici est que nous parvenons à définir et à exécuter des tests fonctionnels sans implémentation de la couche de service (via des mocks). Ces tests peuvent ensuite être considérés comme des tests d’intégration puisqu&rsquo;en ayant une fabrique de scénarios et une fabrique de services pour une nouvelle implémentation, on peut alors créer une nouvelle classe de test en héritant directement de la classe <em>MainTest</em>. Les résultats doivent être conformes à ceux initialement prévus avec nos mocks.
+Cet exercice, que j&rsquo;ai proposé à mes étudiants de Master, s&rsquo;inscrit dans le cadre du découplage des tests fonctionnels et des implémentations lorsque les tests fonctionnels sont écrits sous forme de tests unitaires et qu&rsquo;on vise à valider des implémentations d&rsquo;une interface donnée.</p>
 
       </div>
 
